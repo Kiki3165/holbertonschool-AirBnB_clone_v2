@@ -2,7 +2,7 @@
 '''script'''
 
 from flask import Flask
-
+'''doc'''
 app = Flask(__name__)
 '''doc'''
 @app.route('/')
