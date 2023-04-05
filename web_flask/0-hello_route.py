@@ -7,11 +7,10 @@ from flask import Flask
 
 app = Flask(__name__)
 
-'''doc'''
-
-@app.route('/')
-def route()
-    return 'Hello HBNB!'
+@app.route('/', strict_slashes=False')
+    '''def route'''
+    def route()
+        return 'Hello HBNB!'
 
 '''module'''
 
