@@ -1,20 +1,20 @@
 #!/usr/bin/python3
-#docu
+"""docu"""
 
 from flask import Flask
 
-# docu
+"""docu"""
 
 app = Flask(__name__)
 
-# docu
+"""docu"""
 
 @app.route('/', strict_slashes=False')
-    # def route
+    """def route"""
     def route()
         return 'Hello HBNB!'
 
-# module
+"""docu"""
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
