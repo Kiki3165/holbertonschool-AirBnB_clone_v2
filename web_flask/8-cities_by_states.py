@@ -21,8 +21,9 @@ def states_cities_list():
     """
     Displays a list of states and cities.
     """
-    states = storage.all(State).values()
-    states = sorted(states, key=lambda state: state.name)
+    states = []
+    for state in storage.all(State).values():
+        states.append({**state.to_dict(), **{'cities': state.cities}})
 
     return render_template('8-cities_by_states.html', states=states)
 

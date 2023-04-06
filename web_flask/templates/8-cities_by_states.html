@@ -1,23 +1,20 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>States</title>
-  </head>
-  <body>
-    <h1>States</h1>
-    <ul>
-      {% for state in states %}
-        <li>
-          <b>{{ state.id }}: {{ state.name }}</b>
-          <ul>
-            {% for city in state.cities %}
-              <li>
-                <b>{{ city.id }}: {{ city.name }}</b>
-              </li>
+<HTML lang="en">
+    <HEAD>
+        <TITLE>HBNB</TITLE>
+    </HEAD>
+    <BODY>
+        <H1>States</H1>
+            {% for state in states|sort(attribute='name') %}
+
+            <LI>{{state.id}}: <B>{{state.name}}</B></LI>
+                <UL>
+                    {% for city in state.cities|sort(attribute='name') %}
+
+                    <li>{{city.id}}: <B>{{city.name}}</B></LI>
+                    {% endfor %}
+                    
+                </UL>
             {% endfor %}
-          </ul>
-        </li>
-      {% endfor %}
-    </ul>
-  </body>
-</html>
+    </BODY>
+</HTML>
