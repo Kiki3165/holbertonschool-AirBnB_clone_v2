@@ -8,27 +8,23 @@ from models.state import State
 app = Flask(__name__)
 
 
-@app.route("/", strict_slashes=False)
-def index():
-    """def index"""
-    return "Hello HBNB!"
+@app.route("/cities_by_states", strict_slashes=False)
+def cities_by_states():
+    """ display a HTML page with list of cities
+    sorted by states
+    """
+    states_list = []
+    states = storage.all(State)
+    for _, v in states.items():
+        states_list.append(v)
+    return render_template("8-cities_by_states.html", states_list=states_list)
 
 
 @app.teardown_appcontext
-def afterRequest(self):
+def close_session(exception):
+    """ remove the current SQLalchemy session """
     storage.close()
 
 
-@app.route("/cities_by_states", strict_slashes=False)
-def cities_by_states():
-    """def cities_by_states"""
-    from models.state import State
-    states = []
-    for state in storage.all(State).values():
-        states.append({**state.to_dict(), **{'cities': state.cities}})
-
-    return render_template('8-cities_by_states.html', states=states)
-
-
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', port=5000)
