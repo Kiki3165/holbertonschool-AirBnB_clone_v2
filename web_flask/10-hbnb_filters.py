@@ -15,7 +15,6 @@ def teardown_db(exception):
 @app.route('/hbnb_filters')
 def hbnb_filters():
     """Display the HTML page like 6-index.html"""
-    # Load State, City, and Amenity objects from DBStorage and sort them by name
     states = sorted(storage.all("State").values(), key=lambda state: state.name)
     cities = sorted(storage.all("City").values(), key=lambda city: city.name)
     amenities = sorted(storage.all("Amenity").values(), key=lambda amenity: amenity.name)
