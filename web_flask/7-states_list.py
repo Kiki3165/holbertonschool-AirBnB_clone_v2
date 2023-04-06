@@ -1,33 +1,27 @@
 #!/usr/bin/python3
 """docu"""
 
+from flask import Flask
+from flask import render_template
 from models import storage
-from flask import Flask, render_template
+from models.state import State
 
 app = Flask(__name__)
 
 
-@app.route("/", strict_slashes=False)
-def index():
-    """def index"""
-    return "Hello HBNB!"
+@app.route("/states_list", strict_slashes=False)
+def states_list():
+    """ display a HTML page with list of states """
+    states = storage.all(State)
+    states_list = sorted(states.values(), key=lambda x: x.name)
+    return render_template("7-states_list.html", states=states_list)
 
 
 @app.teardown_appcontext
-def afterRequest(self):
+def close_session(exception):
+    """ remove the current SQLalchemy session """
     storage.close()
 
 
-@app.route("/states_list", strict_slashes=False)
-def states_list():
-    """def states_list"""
-    from models.state import State
-    states = []
-    for state in storage.all(State).values():
-        states.append(state.to_dict())
-
-    return render_template('7-states_list.html', states=states)
-
-
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', port=5000)
