@@ -5,13 +5,12 @@ from flask import Flask
 app = Flask(__name__)
 
 @app.route('/', strict_slashes=False)
-def route():
-"""docu"""
+def hello_hbnb():
+    """def"""
     return 'Hello HBNB!'
 
 @app.route('/hbnb', strict_slashes=False)
-def routeX():
-"""docu"""
+def hbnb():
     return 'HBNB'
 
 if __name__ == '__main__':
